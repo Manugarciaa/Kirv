@@ -1,0 +1,109 @@
+import { motion } from "framer-motion";
+import { RevealSection } from "@/components/ui/reveal-section";
+import { TechLabel } from "@/components/ui/tech-label";
+import { AnimatedDivider } from "@/components/ui/animated-divider";
+
+const projects = [
+  {
+    id: "001",
+    title: "Migración de Infraestructura",
+    client: "SaaS Empresarial",
+    year: "2026",
+    description: "Migración sin tiempo de inactividad de monolito heredado a arquitectura de microservicios distribuidos. Reducción del 40% en costos operativos.",
+  },
+  {
+    id: "002",
+    title: "Plataforma de Análisis en Tiempo Real",
+    client: "Servicios Financieros",
+    year: "2026",
+    description: "Pipeline de procesamiento de datos con latencia submilisegundo manejando más de 2M eventos por segundo con entrega garantizada.",
+  },
+  {
+    id: "003",
+    title: "Plataforma para Desarrolladores",
+    client: "Startup Tecnológica",
+    year: "2025",
+    description: "Plataforma interna que reduce el tiempo de despliegue de horas a minutos. Aprovisionamiento de infraestructura autoservicio.",
+  },
+];
+
+export function WorkSection() {
+  return (
+    <section id="work" className="py-16 md:py-24 lg:py-section bg-secondary/30 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+        <RevealSection>
+          <div className="mb-12 md:mb-16">
+            <TechLabel>Trabajo Seleccionado</TechLabel>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-foreground mt-4">
+              Casos de Estudio
+            </h2>
+          </div>
+        </RevealSection>
+
+        <AnimatedDivider className="mb-0" />
+
+        <div className="divide-y divide-border">
+          {projects.map((project, index) => (
+            <RevealSection key={project.id} delay={index * 150}>
+              <motion.article
+                whileHover={{ x: 12 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="py-8 md:py-12 lg:py-16 cursor-pointer group"
+              >
+                <div className="grid grid-cols-12 gap-3 md:gap-6 lg:gap-8 items-start">
+                  {/* Project Number */}
+                  <div className="col-span-2 sm:col-span-1">
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {project.id}
+                    </span>
+                  </div>
+
+                  {/* Project Info */}
+                  <div className="col-span-10 sm:col-span-11 md:col-span-7">
+                    <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-medium text-foreground mb-2 md:mb-3 tracking-tight group-hover:text-foreground/80 transition-colors duration-medium">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Meta */}
+                  <div className="col-span-10 col-start-3 sm:col-span-11 sm:col-start-2 md:col-span-4 md:col-start-auto flex flex-row md:flex-col md:items-end gap-3 md:gap-2 mt-3 md:mt-0">
+                    <TechLabel>{project.client}</TechLabel>
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {project.year}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Hover indicator line */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  className="h-px bg-foreground mt-6 md:mt-8 origin-left"
+                />
+              </motion.article>
+            </RevealSection>
+          ))}
+        </div>
+
+        <RevealSection delay={400}>
+          <div className="mt-12 md:mt-16 flex justify-center">
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 md:gap-4 font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-foreground border border-border px-6 md:px-8 py-3 md:py-4 hover:bg-foreground hover:text-background transition-all duration-medium"
+            >
+              <span>Discutir Tu Proyecto</span>
+              <motion.span
+                className="w-4 h-px bg-current"
+                whileHover={{ width: 24 }}
+              />
+            </a>
+          </div>
+        </RevealSection>
+      </div>
+    </section>
+  );
+}

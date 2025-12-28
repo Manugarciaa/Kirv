@@ -1,0 +1,116 @@
+import { motion } from "framer-motion";
+import { TechLabel } from "@/components/ui/tech-label";
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="py-12 border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4">
+          {/* Logo & Copyright */}
+          <div className="md:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+                KIRV
+              </span>
+              <p className="font-mono text-xs text-muted-foreground mt-4">
+                © {currentYear} KIRV Engineering Studio
+              </p>
+              <p className="font-mono text-xs text-muted-foreground mt-1">
+                Todos los derechos reservados.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Navigation */}
+          <div className="md:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <TechLabel>Navegación</TechLabel>
+              <nav className="mt-4 space-y-2">
+                {[
+                  { name: "Trabajo", id: "work" },
+                  { name: "Servicios", id: "services" },
+                  { name: "Nosotros", id: "about" },
+                  { name: "Contacto", id: "contact" }
+                ].map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="block font-mono text-sm text-muted-foreground hover:text-foreground transition-colors duration-medium"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </motion.div>
+          </div>
+
+          {/* Contact */}
+          <div className="md:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <TechLabel>Conectar</TechLabel>
+              <div className="mt-4 space-y-2">
+                <a
+                  href="mailto:hello@kirv.io"
+                  className="block font-mono text-sm text-muted-foreground hover:text-foreground transition-colors duration-medium"
+                >
+                  hello@kirv.io
+                </a>
+                <a
+                  href="#"
+                  className="block font-mono text-sm text-muted-foreground hover:text-foreground transition-colors duration-medium"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="#"
+                  className="block font-mono text-sm text-muted-foreground hover:text-foreground transition-colors duration-medium"
+                >
+                  GitHub
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          className="h-px bg-border mt-12 origin-left"
+        />
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
+          <TechLabel>Excelencia en Ingeniería</TechLabel>
+          <span className="font-mono text-xs text-muted-foreground">
+            San Miguel de Tucumán, Argentina
+          </span>
+        </motion.div>
+      </div>
+    </footer>
+  );
+}

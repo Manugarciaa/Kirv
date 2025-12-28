@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* KIRV Design System - Architectural, Industrial, Minimal */
+
+@layer base {
+  :root {
+    /* Light Mode - Cream & Stone */
+    --background: 40 20% 96%;
+    --foreground: 0 0% 12%;
+
+    --card: 40 15% 93%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 40 20% 96%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 0 0% 15%;
+    --primary-foreground: 40 20% 96%;
+
+    --secondary: 40 10% 88%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 40 8% 85%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 40 12% 90%;
+    --accent-foreground: 0 0% 15%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 10% 82%;
+    --input: 40 10% 82%;
+    --ring: 0 0% 20%;
+
+    --radius: 0px;
+
+    /* Custom tokens */
+    --stone: 40 8% 70%;
+    --graphite: 0 0% 35%;
+    --concrete: 40 5% 60%;
+    --cream: 40 20% 96%;
+    --charcoal: 0 0% 15%;
+
+    /* Animation timing */
+    --transition-slow: 800ms;
+    --transition-medium: 500ms;
+    --transition-fast: 300ms;
+    --easing-precise: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --easing-mechanical: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 40 15% 93%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 15%;
+    --sidebar-primary-foreground: 40 20% 96%;
+    --sidebar-accent: 40 12% 90%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 40 10% 82%;
+    --sidebar-ring: 0 0% 20%;
+  }
+
+  .dark {
+    /* Dark Mode - Charcoal & Graphite */
+    --background: 0 0% 11%;
+    --foreground: 40 10% 90%;
+
+    --card: 0 0% 14%;
+    --card-foreground: 40 10% 90%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 40 10% 90%;
+
+    --primary: 40 10% 90%;
+    --primary-foreground: 0 0% 11%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 40 10% 85%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 40 5% 55%;
+
+    --accent: 0 0% 16%;
+    --accent-foreground: 40 10% 90%;
+
+    --destructive: 0 50% 40%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 40 10% 80%;
+
+    --stone: 0 0% 40%;
+    --graphite: 0 0% 55%;
+    --concrete: 0 0% 45%;
+    --cream: 40 10% 90%;
+    --charcoal: 0 0% 11%;
+
+    --sidebar-background: 0 0% 14%;
+    --sidebar-foreground: 40 10% 85%;
+    --sidebar-primary: 40 10% 90%;
+    --sidebar-primary-foreground: 0 0% 11%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 40 10% 90%;
+    --sidebar-border: 0 0% 22%;
+    --sidebar-ring: 40 10% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+
+  /* Sharp edges - no rounded corners anywhere */
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@layer components {
+  /* Technical label styling */
+  .tech-label {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  /* Grid overlay for architectural feel */
+  .grid-overlay {
+    background-image: 
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Divider that draws itself */
+  .divider-draw {
+    @apply h-px bg-border;
+    transform-origin: left;
+    animation: draw-line var(--transition-slow) var(--easing-mechanical) forwards;
+  }
+
+  /* Section reveal animation */
+  .reveal-section {
+    @apply opacity-0 translate-y-8;
+    transition: opacity var(--transition-slow) var(--easing-precise),
+                transform var(--transition-slow) var(--easing-precise);
+  }
+
+  .reveal-section.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    @apply opacity-0 translate-y-4;
+    transition: opacity var(--transition-medium) var(--easing-precise),
+                transform var(--transition-medium) var(--easing-precise);
+  }
+
+  .stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; @apply opacity-100 translate-y-0; }
+  .stagger-children.visible > *:nth-child(2) { transition-delay: 100ms; @apply opacity-100 translate-y-0; }
+  .stagger-children.visible > *:nth-child(3) { transition-delay: 200ms; @apply opacity-100 translate-y-0; }
+  .stagger-children.visible > *:nth-child(4) { transition-delay: 300ms; @apply opacity-100 translate-y-0; }
+  .stagger-children.visible > *:nth-child(5) { transition-delay: 400ms; @apply opacity-100 translate-y-0; }
+  .stagger-children.visible > *:nth-child(6) { transition-delay: 500ms; @apply opacity-100 translate-y-0; }
+
+  /* Architectural card */
+  .arch-card {
+    @apply border border-border bg-card p-8 transition-all duration-500;
+  }
+
+  .arch-card:hover {
+    @apply bg-secondary;
+  }
+
+  /* Technical grid */
+  .tech-grid {
+    @apply grid gap-px bg-border;
+  }
+
+  .tech-grid > * {
+    @apply bg-background;
+  }
+}
+
+@layer utilities {
+  /* Motion utilities */
+  .motion-slow {
+    transition-duration: var(--transition-slow);
+    transition-timing-function: var(--easing-mechanical);
+  }
+
+  .motion-medium {
+    transition-duration: var(--transition-medium);
+    transition-timing-function: var(--easing-precise);
+  }
+
+  .motion-fast {
+    transition-duration: var(--transition-fast);
+    transition-timing-function: var(--easing-precise);
+  }
+
+  /* Parallax depth layers */
+  .parallax-slow {
+    will-change: transform;
+  }
+
+  .parallax-fast {
+    will-change: transform;
+  }
+}
+
+/* Keyframe animations */
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scroll-driven progress indicator */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: grow-width auto linear;
+    animation-timeline: scroll();
+  }
+
+  @keyframes grow-width {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
