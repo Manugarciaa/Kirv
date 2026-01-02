@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
@@ -8,6 +9,7 @@ const navItems = [
   { label: "Servicios", href: "#services" },
   { label: "Nosotros", href: "#about" },
   { label: "Contacto", href: "#contact" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Header() {
@@ -34,23 +36,33 @@ export function Header() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
-            href="#"
+          <Link
+            to="/"
             className="font-display text-xl font-semibold tracking-tight text-foreground"
           >
             KIRV
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-12">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors duration-medium"
-              >
-                {item.label}
-              </a>
+              item.href.startsWith("/") ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors duration-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors duration-medium"
+                >
+                  {item.label}
+                </a>
+              )
             ))}
             <ThemeToggle />
           </nav>
@@ -92,17 +104,30 @@ export function Header() {
           >
             <nav className="container mx-auto px-6 py-8 flex flex-col gap-6">
               {navItems.map((item, index) => (
-                <motion.a
+                <motion.div
                   key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {item.label}
-                </motion.a>
+                  {item.href.startsWith("/") ? (
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </motion.div>
               ))}
             </nav>
           </motion.div>

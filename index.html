@@ -20,6 +20,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="speculationrules">
+      {
+        "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }],
+        "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+      }
+    </script>
+    <script>
+      if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) {
+        const preloadedUrls = {};
+        function pointerenterHandler() {
+          if (!preloadedUrls[this.href]) {
+            preloadedUrls[this.href] = true;
+            const prefetcher = document.createElement('link');
+            prefetcher.as = prefetcher.relList.supports('prefetch') ? 'document' : 'fetch';
+            prefetcher.rel = prefetcher.relList.supports('prefetch') ? 'prefetch' : 'preload';
+            prefetcher.href = this.href;
+            document.head.appendChild(prefetcher);
+          }
+        }
+        document.querySelectorAll('a[href^="/"]').forEach(item => {
+          item.addEventListener('pointerenter', pointerenterHandler);
+        });
+      }
+    </script>
   </head>
 
   <body>
