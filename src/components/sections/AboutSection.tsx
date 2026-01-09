@@ -6,17 +6,17 @@ import { AnimatedDivider } from "@/components/ui/animated-divider";
 const principles = [
   {
     number: "I",
-    title: "Rigor Antes que Velocidad",
-    description: "Medimos dos veces, cortamos una. Cada decisión es documentada, cada compromiso es explícito.",
+    title: "Entender primero",
+    description: "Escuchamos, preguntamos y analizamos antes de proponer cualquier solución.",
   },
   {
     number: "II",
-    title: "Simplicidad como Meta",
-    description: "Los problemas complejos merecen soluciones simples. Resistimos el impulso de sobre-ingenierizar.",
+    title: "Simplificamos el Ruido",
+    description: "Buscamos simplicidad. Si algo puede hacerse más claro, lo hacemos.",
   },
   {
     number: "III",
-    title: "Sistemas Observables",
+    title: "Diseñamos sistemas que se usan, se mantienen y se mejoran con el tiempo.",
     description: "Si no puedes medirlo, no puedes mejorarlo. La telemetría es ciudadana de primera clase.",
   },
 ];
@@ -51,15 +51,13 @@ export function AboutSection() {
             <RevealSection delay={200}>
               <div className="space-y-4 md:space-y-6">
                 <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  Somos tres ingenieros informáticos unidos por una pasión común:
-                  enfrentar desafíos complejos con soluciones fundamentadas en ingeniería
-                  rigurosa y un toque de creatividad.
+                  Somos tres ingenieros informáticos unidos por la pasión de tratar con
+                  problemas complejos y resolverlos bien.
+                  Trabajamos combinando el ingenio, diseño y criterio con un toque de creatividad.
                 </p>
                 <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  No prometemos décadas de experiencia, pero sí un compromiso
-                  inquebrantable con la excelencia técnica. Cada proyecto es una
-                  oportunidad para aplicar metodología de ingeniería real, resolver
-                  problemas de raíz y entregar la solución esperada y correcta.
+                   Nos tomamos el tiempo de entender antes de construir
+                    y preferimos soluciones simples que se puedan sostener en el tiempo.
                 </p>
               </div>
             </RevealSection>

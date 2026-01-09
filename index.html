@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/img/kirv-main-logo.svg" />
+    <link rel="alternate icon" href="/img/kirv-main-logo.svg" />
     <title>KIRV — Estudio de Ingeniería</title>
     <meta name="description" content="KIRV — Estudio de ingeniería construyendo sistemas de software precisos. Fundado por ingenieros, para ingenieros." />
     <meta name="author" content="KIRV" />
@@ -20,6 +20,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="speculationrules">
+      {
+        "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }],
+        "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+      }
+    </script>
+    <script>
+      if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) {
+        const preloadedUrls = {};
+        function pointerenterHandler() {
+          if (!preloadedUrls[this.href]) {
+            preloadedUrls[this.href] = true;
+            const prefetcher = document.createElement('link');
+            prefetcher.as = prefetcher.relList.supports('prefetch') ? 'document' : 'fetch';
+            prefetcher.rel = prefetcher.relList.supports('prefetch') ? 'prefetch' : 'preload';
+            prefetcher.href = this.href;
+            document.head.appendChild(prefetcher);
+          }
+        }
+        document.querySelectorAll('a[href^="/"]').forEach(item => {
+          item.addEventListener('pointerenter', pointerenterHandler);
+        });
+      }
+    </script>
   </head>
 
   <body>

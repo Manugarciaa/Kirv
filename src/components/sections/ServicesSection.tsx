@@ -6,27 +6,39 @@ import { AnimatedDivider } from "@/components/ui/animated-divider";
 const services = [
   {
     id: "01",
-    title: "Arquitectura de Sistemas",
+    title: "Diseño de Producto & UX",
     description:
-      "Diseñando infraestructura escalable y resiliente desde primeros principios. Construimos bases que soportan el crecimiento sin acumular deuda técnica.",
+      "Diseñamos experiencias claras y faciles de usar. Pensamos flujos, pantallas y decisiones desde el punto de vista del usuario. Nuestro trabajo es que tu producto se entienda solo.",
   },
   {
     id: "02",
-    title: "Ingeniería de Plataformas",
+    title: "Automatizaciones e IA",
     description:
-      "Construyendo plataformas internas para desarrolladores que aceleran la entrega. Herramientas estandarizadas, flujos automatizados, sistemas observables.",
+      "Identificamos tareas que hoy consumen tiempo y energía, y las convertimos en flujos automáticos. Automatizamos lo repetitivo para que puedas enfocarte en lo importante.",
   },
-  {
+   {
     id: "03",
-    title: "Infraestructura de Datos",
+    title: "Desarrollo Web",
     description:
-      "Construyendo pipelines y almacenes que transforman datos en bruto en inteligencia accionable. Procesamiento en tiempo real a escala.",
+      "Construimos productos sólidos, pensados para crecer. Desarrollamos webs y aplicaciones con una base técnica clara.",
   },
   {
     id: "04",
-    title: "Ingeniería de Seguridad",
+    title: "Digitalización de procesos",
     description:
-      "Implementando estrategias de defensa en profundidad. Arquitecturas zero-trust, cumplimiento continuo y frameworks de respuesta a incidentes.",
+      "Construyendo pipelines y almacenes que transforman datos en bruto en inteligencia accionable. Procesamiento en tiempo real a escala.",
+  },
+    {
+    id: "05",
+    title: "Infraestructura de Datos",
+    description:
+      "Te ayudamos a convertir lo manual a digital. Ayudamos a ordenar procesos dispersos y llevarlos a sistemas claros y trazables.",
+  },
+  {
+  id: "06",
+    title: "Arquitectura de Sistemas",
+    description:
+      "Diseñando infraestructura escalable y resiliente desde primeros principios. Construimos bases que soportan el crecimiento sin acumular deuda técnica.",
   },
 ];
 
@@ -46,8 +58,8 @@ export function ServicesSection() {
               </h2>
             </div>
             <p className="text-muted-foreground max-w-md text-sm md:text-base leading-relaxed">
-              Cada proyecto comienza entendiendo el problema profundamente antes de
-              proponer soluciones.
+              No creemos en soluciones enlatadas. Cada proyecto es único y nuestro
+              objetivo es lograr que funcione de la mejor manera.
             </p>
           </div>
         </RevealSection>
