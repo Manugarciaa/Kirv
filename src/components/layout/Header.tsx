@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
@@ -15,6 +15,8 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,17 @@ export function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const getHref = (href: string) => {
+    if (href.startsWith("/")) return href;
+    return isHome ? href : `/${href}`;
+  };
+
+  const isActive = (href: string) => {
+    if (href === "/" && location.pathname === "/") return true;
+    if (href !== "/" && href.startsWith("/") && location.pathname.startsWith(href)) return true;
+    return false;
+  };
 
   return (
     <header
@@ -42,7 +55,7 @@ export function Header() {
           >
             <div
               aria-label="KIRV"
-              className="block h-[62px] md:h-[78px] w-[172px] md:w-[220px] -my-2 md:-my-3 bg-[#4E5CF2] dark:bg-[#D9D9D9]"
+              className="block h-[62px] md:h-[78px] w-[172px] md:w-[220px] -my-2 md:-my-3 bg-primary"
               style={{
                 WebkitMaskImage: 'url(/img/kirv-main-logo.svg)',
                 maskImage: 'url(/img/kirv-main-logo.svg)',
@@ -58,25 +71,34 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-12">
-            {navItems.map((item) => (
-              item.href.startsWith("/") ? (
+            {navItems.map((item) => {
+              const href = getHref(item.href);
+              const active = isActive(item.href);
+
+              return item.href.startsWith("/") || !isHome ? (
                 <Link
                   key={item.label}
-                  to={item.href}
-                  className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors duration-medium"
+                  to={href}
+                  className={cn(
+                    "font-mono text-xs uppercase tracking-[0.15em] transition-colors duration-medium",
+                    active ? "text-primary font-medium" : "text-muted-foreground hover:text-primary"
+                  )}
                 >
                   {item.label}
                 </Link>
               ) : (
                 <a
                   key={item.label}
-                  href={item.href}
-                  className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors duration-medium"
+                  href={href}
+                  className={cn(
+                    "font-mono text-xs uppercase tracking-[0.15em] transition-colors duration-medium",
+                    active ? "text-primary font-medium" : "text-muted-foreground hover:text-primary"
+                  )}
                 >
                   {item.label}
                 </a>
-              )
-            ))}
+              );
+            })}
             <ThemeToggle />
           </nav>
 
@@ -116,32 +138,43 @@ export function Header() {
             className="md:hidden bg-background border-b border-border overflow-hidden"
           >
             <nav className="container mx-auto px-6 py-8 flex flex-col gap-6">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                >
-                  {item.href.startsWith("/") ? (
-                    <Link
-                      to={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-[#2900D2] transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  )}
-                </motion.div>
-              ))}
+              {navItems.map((item, index) => {
+                const href = getHref(item.href);
+                const active = isActive(item.href);
+
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                  >
+                    {item.href.startsWith("/") || !isHome ? (
+                      <Link
+                        to={href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "font-mono text-sm uppercase tracking-[0.15em] transition-colors",
+                          active ? "text-primary font-medium" : "text-muted-foreground hover:text-primary"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "font-mono text-sm uppercase tracking-[0.15em] transition-colors",
+                          active ? "text-primary font-medium" : "text-muted-foreground hover:text-primary"
+                        )}
+                      >
+                        {item.label}
+                      </a>
+                    )}
+                  </motion.div>
+                );
+              })}
             </nav>
           </motion.div>
         )}

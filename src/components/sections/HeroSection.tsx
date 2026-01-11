@@ -35,7 +35,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative md:min-h-screen flex items-start md:items-end pb-4 md:pb-24 pt-16 md:pt-32 overflow-hidden bg-background">
+    <section className="relative min-h-[600px] h-screen flex items-start md:items-end pb-8 md:pb-12 pt-16 md:pt-20 overflow-hidden bg-background">
       {/* Grid Background */}
       <div
         className="absolute inset-0 grid-overlay opacity-20 md:opacity-30 pointer-events-none"
@@ -72,21 +72,21 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
-              <TechLabel>
-                <Typewriter
-                  texts={[
-                    "Estudio de Ingeniería",
-                    "Estudio de Diseño UX",
-                    "Estudio de Inteligencia Artificial",
-                    "Estudio de Desarrollo",
-                    "Estudio de Automatizaciones",
-                  ]}
-                  speed={90}
-                  pause={1400}
-                  className="!text-[#2900D2] dark:!text-[#5B6CFF]"
-                />
-                <span className="ml-1 inline-block w-px h-[1em] align-middle bg-[#2900D2] dark:bg-[#5B6CFF] animate-pulse" />
-              </TechLabel>
+            <TechLabel>
+              <Typewriter
+                texts={[
+                  "Estudio de Ingeniería",
+                  "Estudio de Diseño UX",
+                  "Estudio de Inteligencia Artificial",
+                  "Estudio de Desarrollo",
+                  "Estudio de Automatizaciones",
+                ]}
+                speed={90}
+                pause={1400}
+                className="!text-primary"
+              />
+              <span className="ml-1 inline-block w-px h-[1em] align-middle bg-primary animate-pulse" />
+            </TechLabel>
           </motion.div>
 
           <AnimatedDivider className="my-6" delay={400} />
@@ -96,14 +96,14 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-foreground leading-[0.95]"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-normal tracking-tight text-foreground leading-[0.95]"
           >
             Sistemas precisos
             <br />
-            <span className="text-muted-foreground">para problemas complejos</span>
+            <span className="text-foreground/80">para problemas complejos</span>
           </motion.h1>
 
-          <AnimatedDivider className="my-4 md:my-8" delay={600} />
+          <AnimatedDivider className="my-3 md:my-5" delay={600} />
 
           {/* Subtitle + Corner Info */}
           <div className="flex items-start justify-between gap-6">
@@ -111,7 +111,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl font-light leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-foreground/90 max-w-xl font-normal leading-relaxed"
             >
               Somos un equipo de Ingenieros que expertos en convertir ideas en sistemas confiables, claros y funcionales
             </motion.p>
@@ -228,7 +228,7 @@ export function HeroSection() {
                         </div>
                         <CardHeader className="relative z-10">
                           <div className="inline-block rounded-md px-2.5 py-1.5 bg-background/30 dark:bg-black/12 backdrop-blur-[1px]">
-                            <CardTitle className="text-base font-light tracking-tight text-foreground dark:text-white drop-shadow">
+                            <CardTitle className="text-base font-medium tracking-tight text-foreground dark:text-white drop-shadow">
                               {renderTitle(item.text)}
                             </CardTitle>
                           </div>
@@ -280,7 +280,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            className="hidden lg:grid mt-8 md:mt-10 mb-8 md:mb-16 lg:mb-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="hidden lg:grid mt-6 md:mt-8 mb-4 md:mb-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"
           >
             {[
               {
@@ -352,7 +352,7 @@ export function HeroSection() {
                     </div>
                     <CardHeader className="relative z-10">
                       <div className="inline-block rounded-md px-2.5 py-1.5 bg-background/60 dark:bg-black/12 backdrop-blur-[1px]">
-                        <CardTitle className="text-base md:text-lg lg:text-xl font-light tracking-tight text-foreground dark:text-white drop-shadow">
+                        <CardTitle className="text-base md:text-lg lg:text-xl font-medium tracking-tight text-foreground dark:text-white drop-shadow">
                           {renderTitle(item.text)}
                         </CardTitle>
                       </div>
@@ -387,7 +387,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-6 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
+            className="mt-4 md:mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
           >
             <a
               href="#work"
@@ -405,7 +405,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        
+
       </div>
 
       {/* Scroll Indicator */}

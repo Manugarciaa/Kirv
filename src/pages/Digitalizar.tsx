@@ -122,7 +122,7 @@ const Digitalizar = () => {
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                     transition={{ duration: 0.2 }}
-                    className="w-full sm:w-auto mt-2 md:mt-4 inline-flex items-center justify-center gap-3 md:gap-4 font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-primary-foreground bg-primary px-6 md:px-8 py-3 md:py-4 hover:bg-[#2900D2] dark:hover:bg-[#5B6CFF] transition-colors duration-medium"
+                    className="w-full sm:w-auto mt-2 md:mt-4 inline-flex items-center justify-center gap-3 md:gap-4 font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-primary-foreground bg-primary px-6 md:px-8 py-3 md:py-4 hover:bg-primary/90 transition-colors duration-medium"
                   >
                     <span>Enviar Mensaje</span>
                     <span className="w-4 h-px bg-current" />

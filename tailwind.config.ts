@@ -67,6 +67,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "kirv-blue": "hsl(var(--kirv-blue))",
       },
       borderRadius: {
         lg: "0px",

@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="relative py-12 border-t border-border overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[#4E5CF2] dark:bg-[#4E5CF2]" />
+        <div className="absolute inset-0 bg-[#24375f] dark:bg-[#1e2d4d]" />
         <div className="absolute inset-0 grid-overlay opacity-10" />
         <div className="absolute -top-24 right-0 h-64 w-64 rounded-full bg-black/8 dark:bg-white/8 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-56 w-full bg-gradient-to-t from-black/8 via-transparent to-transparent dark:from-white/8" />

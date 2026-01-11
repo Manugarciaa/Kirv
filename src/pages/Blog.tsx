@@ -144,7 +144,7 @@ export default function Blog() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="rounded-full hover:bg-[#2900D2] dark:hover:bg-[#5B6CFF] hover:text-background transition-colors duration-medium"
+                        className="rounded-full hover:bg-primary hover:text-primary-foreground transition-colors duration-medium"
                         asChild
                       >
                         <a href={post.url} target="_blank" rel="noopener noreferrer">Leer</a>
